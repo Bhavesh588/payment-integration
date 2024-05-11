@@ -2,10 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function PaymentReceipt() {
+    const [customer_id, setCustomer_ID] = useState("");
+    const [customer_name, setCustomer_Name] = useState("");
+    const [amount, setAmount] = useState(0);
+    const [transaction_id, setTransaction_ID] = useState("");
+    const [payment_id, setPayment_ID] = useState("");
+    const [date_time, setDate_Time] = useState("");
     const [status, setStatus] = useState("");
     useEffect(() => {
         if (window.location.search.substring(1).split("=")[1]) {
-            setStatus(window.location.search.substring(1).split("=")[1]);
+            const searchParams = new URLSearchParams(window.location.search);
+            for (const param of searchParams) {
+                if (param[0] === "customer_id") setCustomer_ID(param[1]);
+                if (param[0] === "customer_name") setCustomer_Name(param[1]);
+                if (param[0] === "amount") setAmount(param[1]);
+                if (param[0] === "transaction_id") setTransaction_ID(param[1]);
+                if (param[0] === "payment_id") setPayment_ID(param[1]);
+                if (param[0] === "date_time") setDate_Time(param[1]);
+                if (param[0] === "status") setStatus(param[1]);
+            }
         }
     }, []);
 
@@ -52,42 +67,42 @@ function PaymentReceipt() {
                         <span>Customer ID</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>1</span>
+                        <span>{customer_id}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Customer Name</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>Bhavesh</span>
+                        <span>{customer_name}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Amount</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>300</span>
+                        <span>{amount}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Transaction ID</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>25DC2cv54</span>
+                        <span>{transaction_id}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Payment ID</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>123485</span>
+                        <span>{payment_id}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Date/Time</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>12-12-24</span>
+                        <span>{date_time}</span>
                     </div>
                     <div className="col-5 d-flex justify-content-start p-1">
                         <span>Status</span>
                     </div>
-                    <div className="col-7 d-flex justify-content-start">
+                    <div className="col-7 d-flex justify-content-start p-1">
                         <span>{status === "success" ? "Successful" : "Failed"}</span>
                     </div>
                 </div>
