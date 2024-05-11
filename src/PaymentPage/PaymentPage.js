@@ -101,13 +101,13 @@ function PaymentPage() {
                             <input
                                 type="hidden"
                                 name="surl"
-                                value={`https://payment-api252.netlify.app/paymentreceipt?status=success&customer_id=${props.values.customer_ID}`}
+                                value={`https://payment-api252.netlify.app/.netlify/functions/api/paymentreceipt/success?customer_id=${props.values.customer_ID}`}
                                 // value={`http://localhost:5000/.netlify/functions/api/paymentreceipt/success?customer_id=${props.values.customer_ID}`}
                             />
                             <input
                                 type="hidden"
                                 name="furl"
-                                value={`https://payment-api252.netlify.app/paymentreceipt?status=failure&customer_id=${props.values.customer_ID}`}
+                                value={`https://payment-api252.netlify.app/.netlify/functions/api/paymentreceipt/failure?customer_id=${props.values.customer_ID}`}
                                 // value={`http://localhost:5000/.netlify/functions/api/paymentreceipt/failure?customer_id=${props.values.customer_ID}`}
                             />
                             <input type="hidden" name="phone" value="9988776655" />
