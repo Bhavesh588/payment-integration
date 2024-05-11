@@ -30,8 +30,8 @@ function PaymentPage() {
         const email = "test@example.com";
         const salt = "lu20ODPp37Mjc5rfcWSue2A3o13BlV1B";
         const productinfo = "Test Product";
-        const surl = "http://localhost:3000/?status=success";
-        const furl = "http://localhost:3000/?status=failure";
+        const surl = "https://payment-integration252.netlify.app/paymentreceipt?status=success";
+        const furl = "https://payment-integration252.netlify.app/paymentreceipt?status=failure";
         const hashString = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|||||||"${salt}`;
         const hash = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
         const my_string = `key=${key}&txnid=${txnid}&amount=${amount}&firstname=${firstname}&email=${email}&phone=${phone}&productinfo=${productinfo}&surl=${surl}&furl=${furl}&hash=${hash}`;
