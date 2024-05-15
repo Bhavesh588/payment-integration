@@ -11,27 +11,6 @@ function PaymentReceipt() {
     const [date_time, setDate_Time] = useState("");
     const [status, setStatus] = useState("");
 
-    // const getOrderData = useCallback(
-    //     async (ref) => {
-    //         if (customer_id !== "") {
-    //             // await axios.get("http://localhost:5000/.netlify/functions/api/ngenius").then(async (response) => {
-    //             //     localStorage.setItem("access_token", response.data.access_token);
-    //             //     await axios
-    //             //         .post("http://localhost:5000/.netlify/functions/api/ngenius/orderData", {
-    //             //             token: response.data.access_token,
-    //             //             ref: ref,
-    //             //             customer_id: customer_id,
-    //             //             customer_name: customer_name,
-    //             //         })
-    //             //         .then(async (response) => {
-    //             //             // console.log(response.data);
-    //             //         });
-    //             // });
-    //         }
-    //     },
-    //     [customer_id]
-    // );
-
     useEffect(() => {
         if (window.location.search.substring(1).split("=")[1]) {
             const searchParams = new URLSearchParams(window.location.search);
@@ -55,7 +34,7 @@ function PaymentReceipt() {
             <div className="d-flex justify-content-center">
                 <div style={{ width: "fit-content" }}>
                     {status !== "" ? (
-                        status === "success" ? (
+                        status.toUpperCase() === "SUCCESS" ? (
                             <div
                                 className="bg-success"
                                 style={{
@@ -128,7 +107,7 @@ function PaymentReceipt() {
                         <span>Status</span>
                     </div>
                     <div className="col-7 d-flex justify-content-start p-1">
-                        <span>{status === "success" ? "Successful" : "Failed"}</span>
+                        <span>{status.toUpperCase() === "SUCCESS" ? "Successful" : "Failed"}</span>
                     </div>
                 </div>
                 <div className="d-flex justify-content-end">
