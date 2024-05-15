@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
 // import { v4 as uuidv4 } from "uuid";
 
 function PaymentPage() {
     const [all_payment, setAllPayment] = useState([]);
-    const transaction_id = useState("mtx" + new Date().getTime());
+    // const transaction_id = useState("mtx" + new Date().getTime());
     const formref = useRef();
 
     useEffect(() => {
