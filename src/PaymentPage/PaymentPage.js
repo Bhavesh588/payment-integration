@@ -32,10 +32,10 @@ function PaymentPage() {
     const onSubmit = async (values) => {
         // window.location.replace("/paymentreceipt");
         if (values.gateway === "PayU") {
-            // const hashString = `4xfC5J|${transaction_id[0]}|${values.amount}|iPhone|${values.customer_Name}|test@gmail.com|||||||||||lu20ODPp37Mjc5rfcWSue2A3o13BIV1B`;
-            // const hash = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
-            // document.getElementsByName("hash")[0].value = hash;
-            // document.getElementById("final_btn").click();
+            const hashString = `4xfC5J|${transaction_id[0]}|${values.amount}|iPhone|${values.customer_Name}|test@gmail.com|||||||||||lu20ODPp37Mjc5rfcWSue2A3o13BIV1B`;
+            const hash = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
+            document.getElementsByName("hash")[0].value = hash;
+            document.getElementById("final_btn").click();
         } else if (values.gateway === "N-Genius") {
             await axios.get("http://localhost:5000/.netlify/functions/api/ngenius").then(async (response) => {
                 localStorage.setItem("access_token", response.data.access_token);
