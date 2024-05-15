@@ -33,10 +33,11 @@ function PaymentPage() {
 
     const onSubmit = async (values) => {
         if (values.gateway === "PayU") {
-            const hashString = `4xfC5J|${transaction_id[0]}|${values.amount}|iPhone|${values.customer_Name}|test@gmail.com|||||||||||lu20ODPp37Mjc5rfcWSue2A3o13BIV1B`;
-            const hash = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
-            document.getElementsByName("hash")[0].value = hash;
-            document.getElementById("final_btn").click();
+            // const hashString = `4xfC5J|${transaction_id[0]}|${values.amount}|iPhone|${values.customer_Name}|test@gmail.com|||||||||||lu20ODPp37Mjc5rfcWSue2A3o13BIV1B`;
+            // const hash = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
+            // document.getElementsByName("hash")[0].value = hash;
+            // console.log(document.getElementById("final_btn"));
+            // document.getElementById("final_btn").click();
         } else if (values.gateway === "N-Genius") {
             await axios.get("https://payment-api-production.up.railway.app/api/ngenius").then(async (response) => {
                 localStorage.setItem("access_token", response.data.access_token);
@@ -108,7 +109,7 @@ function PaymentPage() {
                             />
                         </div>
                         <div className="d-flex justify-content-center align-items-center">
-                            <div className="m-2">
+                            {/* <div className="m-2">
                                 <button
                                     type="submit"
                                     onClick={() => (props.values.gateway = "PayU")}
@@ -117,7 +118,7 @@ function PaymentPage() {
                                 >
                                     Pay With PayU
                                 </button>
-                            </div>
+                            </div> */}
                             <div className="m-2">
                                 <button
                                     type="submit"
@@ -132,13 +133,13 @@ function PaymentPage() {
                     </Form>
                 )}
             </Formik>
-            <form action="https://test.payu.in/_payment" method="post">
-                <input name="key" value="4xfC5J" />
-                <input name="txnid" value={transaction_id[0]} />
-                <input name="productinfo" value="iPhone" />
-                <input name="amount" value={formref.current ? formref.current?.values.amount : ""} />
-                <input name="email" value="test@gmail.com" />
-                <input name="firstname" value={formref.current ? formref.current?.values.customer_Name : ""} />
+            {/* <form action="https://test.payu.in/_payment" method="post">
+                <input type="hidden" name="key" value="4xfC5J" />
+                <input type="hidden" name="txnid" value={transaction_id[0]} />
+                <input type="hidden" name="productinfo" value="iPhone" />
+                <input type="hidden" name="amount" value={formref.current ? formref.current?.values.amount : ""} />
+                <input type="hidden" name="email" value="test@gmail.com" />
+                <input type="hidden" name="firstname" value={formref.current ? formref.current?.values.customer_Name : ""} />
                 <input
                     type="hidden"
                     name="surl"
@@ -161,10 +162,10 @@ function PaymentPage() {
                     //     formref.current ? formref.current?.values.customer_ID : ""
                     // }&gateway=PayU`}
                 />
-                <input name="phone" value="9988776655" />
-                <input name="hash" />
+                <input type="hidden" name="phone" value="9988776655" />
+                <input type="hidden" name="hash" />
                 <input id="final_btn" type="button" value="submit" style={{ visibility: "hidden" }} />{" "}
-            </form>
+            </form> */}
             {/* {console.log(all_payment)} */}
             {all_payment.length !== 0 ? (
                 <table className="table table-striped">
