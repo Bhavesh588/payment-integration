@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function PaymentReceipt() {
     const [customer_id, setCustomer_ID] = useState("");
@@ -9,6 +10,28 @@ function PaymentReceipt() {
     const [payment_id, setPayment_ID] = useState("");
     const [date_time, setDate_Time] = useState("");
     const [status, setStatus] = useState("");
+
+    const getOrderData = useCallback(
+        async (ref) => {
+            if (customer_id !== "") {
+                // await axios.get("http://localhost:5000/.netlify/functions/api/ngenius").then(async (response) => {
+                //     localStorage.setItem("access_token", response.data.access_token);
+                //     await axios
+                //         .post("http://localhost:5000/.netlify/functions/api/ngenius/orderData", {
+                //             token: response.data.access_token,
+                //             ref: ref,
+                //             customer_id: customer_id,
+                //             customer_name: customer_name,
+                //         })
+                //         .then(async (response) => {
+                //             // console.log(response.data);
+                //         });
+                // });
+            }
+        },
+        [customer_id]
+    );
+
     useEffect(() => {
         if (window.location.search.substring(1).split("=")[1]) {
             const searchParams = new URLSearchParams(window.location.search);
@@ -20,9 +43,11 @@ function PaymentReceipt() {
                 if (param[0] === "payment_id") setPayment_ID(param[1]);
                 if (param[0] === "date_time") setDate_Time(param[1]);
                 if (param[0] === "status") setStatus(param[1]);
+
+                if (param[0] === "ref") getOrderData(param[1]);
             }
         }
-    }, []);
+    }, [getOrderData]);
 
     return (
         <div>
